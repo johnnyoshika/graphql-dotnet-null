@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Server;
+using GraphQL.Server.Ui.Playground;
 using GraphQLNull.GraphQL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,7 @@ namespace GraphQLNull
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseGraphQL<MySchema>();
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions());
         }
     }
 }
