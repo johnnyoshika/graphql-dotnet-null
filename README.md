@@ -1,3 +1,5 @@
+**2020-01-30 Update: Problem is resolved in GraphQL.NET version 3.5 prerelease**
+
 ## Purpose
 
 * Demonstrate this GraphQL.NET bug: https://stackoverflow.com/q/59971333/188740
