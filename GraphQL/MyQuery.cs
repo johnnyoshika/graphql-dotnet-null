@@ -12,10 +12,27 @@ namespace GraphQLNull.GraphQL
         public MyQuery()
         {
             Field<NonNullGraphType<WidgetType>>(
-                "widget",
+                "exception",
                 resolve: context =>
                 {
                     throw new ExecutionError("Something went wrong!");
+                }
+            );
+
+            Field<NonNullGraphType<WidgetType>>(
+                "null",
+                resolve: context =>
+                {
+                    return null;
+                }
+            );
+
+            Field<NonNullGraphType<WidgetType>>(
+                "errorAndNull",
+                resolve: context =>
+                {
+                    context.Errors.Add(new ExecutionError("Something went wrong!"));
+                    return null;
                 }
             );
         }
