@@ -19,6 +19,14 @@ namespace GraphQLNull.GraphQL
                 }
             );
 
+            Field<WidgetType>(
+                "exceptionAndNullable",
+                resolve: context =>
+                {
+                    throw new ExecutionError("Something went wrong!");
+                }
+            );
+
             Field<NonNullGraphType<WidgetType>>(
                 "null",
                 resolve: context =>
@@ -33,6 +41,24 @@ namespace GraphQLNull.GraphQL
                 {
                     context.Errors.Add(new ExecutionError("Something went wrong!"));
                     return null;
+                }
+            );
+
+            Field<WidgetType>(
+                "errorAndNullable",
+                resolve: context =>
+                {
+                    context.Errors.Add(new ExecutionError("Something went wrong!"));
+                    return null;
+                }
+            );
+
+            Field<NonNullGraphType<WidgetType>>(
+                "errorAndValue",
+                resolve: context =>
+                {
+                    context.Errors.Add(new ExecutionError("Something went wrong!"));
+                    return new Widget { Id = 1 };
                 }
             );
         }
