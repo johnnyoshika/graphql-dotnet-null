@@ -1,5 +1,6 @@
 ﻿using GraphQL;
 using GraphQL.Types;
+using GraphQL.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace GraphQLNull.GraphQL
 {
     public class MySchema : Schema
     {
-        public MySchema(IDependencyResolver resolver) : base(resolver)
+        public MySchema(IServiceProvider provider) : base(provider)
         {
-            Query = resolver.Resolve<MyQuery>();
+            Query = provider.GetRequiredService<MyQuery>();
         }
     }
 }
