@@ -24,10 +24,7 @@ namespace GraphQLNull
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             services.AddScoped<MySchema>();
             services
-                .AddGraphQL(options =>
-                {
-                    options.ExposeExceptions = true;
-                })
+                .AddGraphQL()
                 .AddGraphTypes(ServiceLifetime.Scoped);
 
             // Temporarily allow synchronous IO, as it's required to overcome a bug in GraphQL.Net in .Net Core 3:
